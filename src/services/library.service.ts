@@ -1,8 +1,8 @@
 import Library from '@dto/iLibrary'
+import * as libraryRepository from '../repositories/library.repository'
 
 const createLibrary = async (library: Library) => {
-    // todo
-    return library
+    return libraryRepository.insertLibrary(library)
 }
 
 export default {
