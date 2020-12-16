@@ -10,4 +10,4 @@ docker-compose -f docker-compose.yml up --detach library-mysql
 docker-compose -f docker-compose.yml up --detach library-redis
 
 # init app
-docker-compose -f docker-compose.yml up library-app
+docker-compose -f docker-compose.yml up --build library-app
