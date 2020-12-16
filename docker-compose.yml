@@ -14,7 +14,10 @@ services:
       - library-redis
       - library-mysql
     environment: 
-      MYSQL_DATABASE_URL: mysqlurl...
+      MYSQL_DATABASE: library-db
+      MYSQL_USER: library-user
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: library-mysql
       PORT: 3000
 
   library-mysql:
