@@ -17,4 +17,20 @@ export default class Library extends Model {
             longitude: library.address?.geolocation?.longitude,
         }
     }
+
+    static deserializeLibrary (serializedData: any): iLibrary {
+        return {
+            name: serializedData.name,
+            address: {
+                city: serializedData?.city,
+                state: serializedData?.state,
+                street: serializedData?.street,
+                number: serializedData?.number,
+                geolocation: {
+                    latitude: serializedData?.latitude,
+                    longitude: serializedData?.longitude
+                }
+            }
+        }
+    }
 }

@@ -1,5 +1,6 @@
 import Library from "@dto/iLibrary"
 import { UniqueViolationError } from "objection"
+import BaseApiError from "src/errors/BaseApiError"
 import LibraryNameUniqueError from "src/errors/LibrariesNameUnique"
 import LibraryModel from '../models/mysql/library.model'
 
@@ -15,9 +16,18 @@ export const insertLibrary = async (library: Library): Promise<Library> => {
                 throw new LibraryNameUniqueError(library.name)
             }
         }
+        throw err
     }) as LibraryModel
     
     library.id = inserted.$id()
 
     return library
+}
+
+export const getLibraryById = async (id: number): Promise<Library|undefined> => {
+    const library = await LibraryModel.query().findById(id)
+    if (!library) return undefined
+
+    const jsonData = LibraryModel.deserializeLibrary(library)
+    return jsonData
 }

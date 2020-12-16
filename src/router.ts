@@ -6,6 +6,7 @@ const router = express.Router()
 
 router
     .post('/library', createLibraryValidator, wrapAsync(libraryController.create))
+    .get('/library/:id', wrapAsync(libraryController.get))
 
 // let error be handled by a middleware,
 // thereby the controller don't need to handle it
