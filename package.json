@@ -1,0 +1,37 @@
+{
+  "name": "dockerized-librar-api",
+  "version": "0.0.1",
+  "description": "Dockerized Rest API and GraphQL for a library with authentication, caching and messaging.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "dev:container": "nodemon src/index.ts",
+    "dev": "bash ./scripts/dev.sh",
+    "clear-dev": "bash ./scripts/clear_dev.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabriellimoni/dockerized-library.git"
+  },
+  "keywords": [
+    "dockerized",
+    "cache",
+    "messaging"
+  ],
+  "author": "Gabriel Limoni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabriellimoni/dockerized-library/issues"
+  },
+  "homepage": "https://github.com/gabriellimoni/dockerized-library#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3",
+    "@types/express": "^4.17.9"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

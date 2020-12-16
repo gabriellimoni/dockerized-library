@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+  library-app:
+    build: .
+    command: npm run dev:container
+    volumes: 
+      - .:/app
+      - /app/node_modules
+      - library-app:/var/lib/library
+    ports:
+      - '3000:3000'
+    depends_on: 
+      - library-redis
+      - library-mysql
+    environment: 
+      MYSQL_DATABASE_URL: mysqlurl...
+      PORT: 3000
+
+  library-mysql:
+    image: mysql:8
+    restart: always
+    environment: 
+      MYSQL_DATABASE: library-db
+      MYSQL_USER: library-user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports: 
+      - '3306:3306'
+    expose: 
+      - '3306'
+    volumes: 
+      - library-db:/var/lib/mysql
+
+  library-redis:
+    image: redis:alpine
+    ports: 
+      - '6379:6379'
+    volumes:
+      - redis-db:/var/lib/redis
+
+volumes: 
+  library-db: {}
+  redis-db: {}
+  library-app: {}
