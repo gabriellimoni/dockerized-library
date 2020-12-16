@@ -1,21 +1,23 @@
 import Library from "@dto/iLibrary"
+import { UniqueViolationError } from "objection"
+import LibraryNameUniqueError from "src/errors/LibrariesNameUnique"
 import LibraryModel from '../models/mysql/library.model'
 
-export const getLibraryByName = async (name: string): Promise<Library> => {
-    return {} as Library
-}
-
 export const insertLibrary = async (library: Library): Promise<Library> => {
-    // todo- handle errors
     const inserted = await LibraryModel.transaction(async trx => {
-        const deserializedLibrary = LibraryModel.deserializeLibrary(library)
-        await LibraryModel
+        const serializedLibrary = LibraryModel.serializeLibrary(library)
+        return await LibraryModel
             .query(trx)
-            .insert(deserializedLibrary)
-            .catch(console.log)
-    }).catch(err => console.log(err))
+            .insert(serializedLibrary)
+    }).catch(err => {
+        if (err instanceof UniqueViolationError) {
+            if (err.constraint === 'libraries.libraries_name_unique') {
+                throw new LibraryNameUniqueError(library.name)
+            }
+        }
+    }) as LibraryModel
     
-    console.log(inserted)
+    library.id = inserted.$id()
 
     return library
 }
