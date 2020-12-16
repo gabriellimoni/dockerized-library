@@ -8,7 +8,10 @@
     "start": "node dist/src/index.js",
     "dev:container": "nodemon src/index.ts",
     "dev": "bash ./scripts/dev.sh",
-    "clear-dev": "bash ./scripts/clear_dev.sh"
+    "clear-dev": "bash ./scripts/clear_dev.sh",
+    "add-migration": "knex migrate:make",
+    "run-migrations": "knex migrate:latest",
+    "rollback-migrations": "knex migrate:rollback"
   },
   "repository": {
     "type": "git",
@@ -35,7 +38,11 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "express-validator": "^6.8.0"
+    "express-validator": "^6.8.0",
+    "knex": "^0.21.13",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "objection": "^2.2.3"
   },
   "nodemonConfig": {
     "ignore": [
