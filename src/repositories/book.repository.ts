@@ -20,7 +20,15 @@ export const insertBook = async (book: Book): Promise<Book | undefined> => {
     }) as BookModel
     
     const createdBookId = inserted.$id() as number
-    book.id = createdBookId
+    const createdBook = await getBookById(createdBookId)
     
-    return book
+    return createdBook
+}
+
+export const getBookById = async (id: number): Promise<Book | undefined> => {
+    const book = await BookModel.query().findById(id)
+    if (!book) return undefined
+
+    const jsonData = BookModel.deserialize(book)
+    return jsonData
 }
