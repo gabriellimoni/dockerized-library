@@ -2,7 +2,7 @@ import Book from '@dto/iBook'
 import BookListParams from '@dto/iBookListParams'
 import BookModel from '@models/mysql/book.model'
 import { ForeignKeyViolationError } from 'objection'
-import BookLibraryIdForeignError from 'src/errors/BookLibraryIdForeign'
+import EntityForeignError from 'src/errors/EntityForeign'
 
 export const insertBook = async (book: Book): Promise<Book | undefined> => {
     const inserted = await BookModel.transaction(async trx => {
@@ -13,7 +13,7 @@ export const insertBook = async (book: Book): Promise<Book | undefined> => {
     }).catch(err => {
         if (err instanceof ForeignKeyViolationError) {
             if (err.constraint === 'books_library_id_foreign') {
-                throw new BookLibraryIdForeignError(book.library_id)
+                throw new EntityForeignError('Library', book.library_id)
             }
         }
 
