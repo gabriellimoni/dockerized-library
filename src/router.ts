@@ -3,12 +3,14 @@ import libraryController from '@controllers/library.controller'
 import createLibraryValidator from '@validators/createLibrary.validator'
 import bookController from '@controllers/book.controller'
 import userController from '@controllers/user.controller'
+import authenticatedOnly from '@middlewares/authenticatedOnly.middleware'
 
 const router = express.Router()
 
 router
     .post('/user', wrapAsync(userController.create))
     .post('/login', wrapAsync(userController.login))
+    .use(wrapAsync(authenticatedOnly))
     .get('/library', wrapAsync(libraryController.list))
     .post('/library', createLibraryValidator, wrapAsync(libraryController.create))
     .get('/library/:id', wrapAsync(libraryController.get))
