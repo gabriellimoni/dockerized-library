@@ -10,8 +10,10 @@
     "dev": "bash ./scripts/dev.sh",
     "clear-dev": "bash ./scripts/clear_dev.sh",
     "add-migration": "knex migrate:make",
+    "add-seed": "knex seed:make",
     "run-migrations": "knex migrate:latest",
-    "rollback-migrations": "knex migrate:rollback"
+    "rollback-migrations": "knex migrate:rollback",
+    "run-seed": "knex seed:run"
   },
   "repository": {
     "type": "git",
