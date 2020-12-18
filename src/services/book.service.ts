@@ -2,9 +2,19 @@ import Book from '@dto/iBook'
 import BookListParams from '@dto/iBookListParams'
 import * as bookRepository from '@repositories/book.repository'
 import * as cacheService from '@services/cache.service'
+import * as amqpService from '@services/amqp.service'
+import { MessageTypesEnum } from '@dto/iPublishMessage'
+import { MessageTopicsEnum } from '@dto/iMessageTopics'
 
 const createBook = async (book: Book) => {
-    return bookRepository.insertBook(book)
+    const createdBook = bookRepository.insertBook(book)
+    await amqpService.publishMessage({
+        message: book,
+        routingKey: '',
+        topicName: MessageTopicsEnum.BOOK_CREATED,
+        type: MessageTypesEnum.PUBSUB,
+    })
+    return createdBook
 }
 
 const listBookWithParams = async (params: BookListParams) => {
