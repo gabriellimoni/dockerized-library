@@ -20,7 +20,6 @@ export const insertLibrary = async (library: Library): Promise<Library | undefin
     
     const createdLibraryId = inserted.$id() as number
     const createdLibrary = await getLibraryById(createdLibraryId)
-    console.log(createdLibrary)
 
     return createdLibrary
 }
