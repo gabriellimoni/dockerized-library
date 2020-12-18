@@ -8,6 +8,7 @@ const router = express.Router()
 
 router
     .post('/user', wrapAsync(userController.create))
+    .post('/login', wrapAsync(userController.login))
     .get('/library', wrapAsync(libraryController.list))
     .post('/library', createLibraryValidator, wrapAsync(libraryController.create))
     .get('/library/:id', wrapAsync(libraryController.get))

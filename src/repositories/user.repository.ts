@@ -40,3 +40,9 @@ function handleInsertUserError (err: Error, user: User) {
 
     throw err
 }
+
+export const getUserFromUsername = async (username: string): Promise<User | undefined> => {
+    const resultData = await UserModel.query().findOne('username', username)
+    const deserializedUser = UserModel.deserialize(resultData)
+    return deserializedUser
+}
