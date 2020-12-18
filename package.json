@@ -30,6 +30,7 @@
   "homepage": "https://github.com/gabriellimoni/dockerized-library#readme",
   "devDependencies": {
     "@types/express": "^4.17.9",
+    "@types/redis": "^2.8.28",
     "@types/uuid": "^8.3.0",
     "nodemon": "^2.0.6",
     "ts-node": "^9.1.1",
@@ -44,6 +45,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "objection": "^2.2.3",
+    "redis": "^3.0.2",
     "uuid": "^8.3.2"
   },
   "nodemonConfig": {

@@ -18,6 +18,7 @@ services:
       MYSQL_USER: library-user
       MYSQL_PASSWORD: password
       MYSQL_HOST: library-mysql
+      REDIS_HOST: library-redis
       PORT: 3000
 
   library-mysql:
