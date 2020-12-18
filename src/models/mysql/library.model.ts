@@ -6,7 +6,7 @@ export default class Library extends Model {
         return 'libraries'
     }
 
-    static serializeLibrary (library: iLibrary): any {
+    static serialize (library: iLibrary): any {
         return {
             name: library.name,
             city: library.address?.city,
@@ -18,7 +18,7 @@ export default class Library extends Model {
         }
     }
 
-    static deserializeLibrary (serializedData: any): iLibrary {
+    static deserialize (serializedData: any): iLibrary {
         return {
             name: serializedData.name,
             address: {
