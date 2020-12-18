@@ -20,6 +20,7 @@ export default class Library extends Model {
 
     static deserialize (serializedData: any): iLibrary {
         return {
+            id: serializedData.id,
             name: serializedData.name,
             address: {
                 city: serializedData?.city,

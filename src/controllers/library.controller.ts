@@ -20,7 +20,14 @@ const getLibrary = async (req: Request, res: Response) => {
     return res.send(library)
 }
 
+const listLibraries = async (req: Request, res: Response) => {
+    const params = req.query
+    const libraries = await libraryService.listLibraryWithParams(params)
+    return res.send(libraries)
+}
+
 export default {
     create: createLibrary,
     get: getLibrary,
+    list: listLibraries,
 }

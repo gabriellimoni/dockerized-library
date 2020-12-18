@@ -6,6 +6,7 @@ import bookController from '@controllers/book.controller'
 const router = express.Router()
 
 router
+    .get('/library', wrapAsync(libraryController.list))
     .post('/library', createLibraryValidator, wrapAsync(libraryController.create))
     .get('/library/:id', wrapAsync(libraryController.get))
     .post('/book', wrapAsync(bookController.create))
