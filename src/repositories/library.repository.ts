@@ -1,6 +1,6 @@
 import Library from "@dto/iLibrary"
 import { UniqueViolationError } from "objection"
-import LibraryNameUniqueError from "src/errors/LibrariesNameUnique"
+import EntityFieldUniqueError from "src/errors/EntityFieldUnique"
 import LibraryModel from '@models/mysql/library.model'
 import LibraryListParams from "@dto/iLibraryListParams"
 
@@ -13,7 +13,7 @@ export const insertLibrary = async (library: Library): Promise<Library | undefin
     }).catch(err => {
         if (err instanceof UniqueViolationError) {
             if (err.constraint === 'libraries.libraries_name_unique') {
-                throw new LibraryNameUniqueError(library.name)
+                throw new EntityFieldUniqueError('Library', 'name', library.name)
             }
         }
         throw err
