@@ -7,8 +7,8 @@ exports.up = function(knex) {
       table.string('state', 2)
       table.string('street', 100)
       table.integer('number').unsigned()
-      table.float('latitude', null)
-      table.float('longitude', null)
+      table.decimal('latitude', 15, 13)
+      table.decimal('longitude', 15, 13)
   })
 };
 
