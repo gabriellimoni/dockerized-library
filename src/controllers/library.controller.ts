@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import libraryService from '@services/library.service'
 import Library from '@dto/iLibrary'
-import LibraryNotFoundError from 'src/errors/LibraryNotFound'
+import EntityNotFoundError from 'src/errors/EntityNotFound'
 import BaseApiError from 'src/errors/BaseApiError'
 
 const createLibrary = async (req: Request, res: Response) => {
@@ -15,7 +15,7 @@ const getLibrary = async (req: Request, res: Response) => {
     if (isNaN(id)) throw new BaseApiError('Parameter ID must be a integer', 400, req.params.id)
 
     const library: Library | undefined = await libraryService.getLibraryById(id)
-    if (!library) throw new LibraryNotFoundError(id)
+    if (!library) throw new EntityNotFoundError('Library', id)
 
     return res.send(library)
 }
