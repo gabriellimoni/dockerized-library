@@ -4,7 +4,7 @@ import BaseApiError from "src/errors/BaseApiError"
 import LibraryNameUniqueError from "src/errors/LibrariesNameUnique"
 import LibraryModel from '../models/mysql/library.model'
 
-export const insertLibrary = async (library: Library): Promise<Library> => {
+export const insertLibrary = async (library: Library): Promise<Library | undefined> => {
     const inserted = await LibraryModel.transaction(async trx => {
         const serializedLibrary = LibraryModel.serializeLibrary(library)
         return await LibraryModel
@@ -19,9 +19,11 @@ export const insertLibrary = async (library: Library): Promise<Library> => {
         throw err
     }) as LibraryModel
     
-    library.id = inserted.$id()
+    const createdLibraryId = inserted.$id() as number
+    const createdLibrary = await getLibraryById(createdLibraryId)
+    console.log(createdLibrary)
 
-    return library
+    return createdLibrary
 }
 
 export const getLibraryById = async (id: number): Promise<Library|undefined> => {

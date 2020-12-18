@@ -6,8 +6,8 @@ import BaseApiError from 'src/errors/BaseApiError'
 
 const createLibrary = async (req: Request, res: Response) => {
     const library: Library = req.body
-    await libraryService.createLibrary(library)
-    return res.send(library)
+    const createdLibrary = await libraryService.createLibrary(library)
+    return res.send(createdLibrary)
 }
 
 const getLibrary = async (req: Request, res: Response) => {
