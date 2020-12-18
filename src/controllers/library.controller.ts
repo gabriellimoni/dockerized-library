@@ -15,7 +15,7 @@ const getLibrary = async (req: Request, res: Response) => {
     if (isNaN(id)) throw new BaseApiError('Parameter ID must be a integer', 400, req.params.id)
 
     const library: Library | undefined = await libraryService.getLibraryById(id)
-    if (!library) throw new EntityNotFoundError('Library', id)
+    if (!library) throw new EntityNotFoundError('Library', 'id', String(id))
 
     return res.send(library)
 }
