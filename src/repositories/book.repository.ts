@@ -1,4 +1,5 @@
 import Book from '@dto/iBook'
+import BookListParams from '@dto/iBookListParams'
 import BookModel from '@models/mysql/book.model'
 import { ForeignKeyViolationError } from 'objection'
 import BookLibraryIdForeignError from 'src/errors/BookLibraryIdForeign'
@@ -31,4 +32,18 @@ export const getBookById = async (id: number): Promise<Book | undefined> => {
 
     const jsonData = BookModel.deserialize(book)
     return jsonData
+}
+
+export const listBookWithParams = async (params: BookListParams): Promise<Array<Book | undefined>> => {
+    const query = BookModel.query()
+
+    if (params.name) query.where('name', params.name)
+    if (params.edition) query.where('edition', params.edition)
+    if (params.year) query.where('year', params.year)
+    if (params.library_id) query.where('library_id', params.library_id)
+    
+    const resultData = await query.execute()
+    const deserializedData = resultData.map(BookModel.deserialize)
+
+    return deserializedData
 }

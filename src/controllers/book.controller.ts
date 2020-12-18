@@ -8,6 +8,13 @@ const createBook = async (req: Request, res: Response) => {
     return res.send(createdBook)
 }
 
+const listBooks = async (req: Request, res: Response) => {
+    const params = req.query
+    const books = await bookService.listBookWithParams(params)
+    return res.send(books)
+}
+
 export default {
     create: createBook,
+    list: listBooks,
 }
