@@ -4,12 +4,18 @@ import { port } from './config/server'
 import router from './router'
 import errorInterceptor from '@middlewares/errorInterceptor.middleware'
 import './database/mysql'
+import * as amqpService from '@services/amqp.service'
 
-const server = express()
-server.use(bodyParser.json())
-server.use(router)
-server.use(errorInterceptor)
+async function main () {
+    await amqpService.connect()
+    
+    const server = express()
+    server.use(bodyParser.json())
+    server.use(router)
+    server.use(errorInterceptor)
 
-server.listen(port, () => {
-    console.log('Running on port', port)
-})
+    server.listen(port, () => {
+        console.log('Running on port', port)
+    })
+}
+main()

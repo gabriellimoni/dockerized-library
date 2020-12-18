@@ -1,0 +1,1 @@
+export const connectionString = process.env.RABBITMQ_CONNECTION_STRING as string

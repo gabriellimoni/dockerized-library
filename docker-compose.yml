@@ -20,6 +20,7 @@ services:
       MYSQL_HOST: library-mysql
       REDIS_HOST: library-redis
       JWT_SECRET_KEY: 'MY-SUPER-SECRET'
+      RABBITMQ_CONNECTION_STRING: 'amqp://library-rabbitmq'
       PORT: 3000
 
   library-mysql:
@@ -43,6 +44,13 @@ services:
       - '6379:6379'
     volumes:
       - redis-db:/var/lib/redis
+
+  library-rabbitmq:
+    image: rabbitmq:3-management
+    ports: 
+      - '5672:5672'
+      - '15672:15672'
+
 
 volumes: 
   library-db: {}
