@@ -33,3 +33,7 @@ export const verifyToken = async (token: string): Promise<boolean> => {
         return false
     }
 }
+
+export const decodeToken = async (token: string): Promise<any> => {
+    return jwt.decode(token.replace('Bearer ', ''))
+}
