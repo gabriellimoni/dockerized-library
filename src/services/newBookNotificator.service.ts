@@ -22,7 +22,10 @@ export const startListening = async () => {
     channel.consume(queue, async message => {
         const strMessage = message?.content.toString() || '{}'
         const jsonMessage = JSON.parse(strMessage)
-        console.log(jsonMessage)
+        
+        // run any process asynchronous...
+        console.log('RECEIVED MESSAGE', jsonMessage)
+
         channel?.ack(message as amqp.ConsumeMessage)
     })
 }
