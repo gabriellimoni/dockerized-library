@@ -2,10 +2,12 @@ import express, { Request, Response, NextFunction } from 'express'
 import libraryController from '@controllers/library.controller'
 import createLibraryValidator from '@validators/createLibrary.validator'
 import bookController from '@controllers/book.controller'
+import userController from '@controllers/user.controller'
 
 const router = express.Router()
 
 router
+    .post('/user', wrapAsync(userController.create))
     .get('/library', wrapAsync(libraryController.list))
     .post('/library', createLibraryValidator, wrapAsync(libraryController.create))
     .get('/library/:id', wrapAsync(libraryController.get))
