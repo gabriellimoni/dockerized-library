@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/src/index.js",
+    "start": "node dist/index.js",
     "dev:container": "nodemon src/index.ts",
     "dev": "bash ./scripts/dev.sh",
     "clear-dev": "bash ./scripts/clear_dev.sh",
@@ -52,6 +52,7 @@
     "graphql": "^15.4.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.13",
+    "module-alias": "^2.2.2",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "objection": "^2.2.3",
@@ -70,5 +71,16 @@
     ],
     "exec": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
     "ext": "ts, js"
+  },
+  "_moduleAliases": {
+    "@controllers": "dist/controllers",
+    "@dto": "dist/dto",
+    "@services": "dist/services",
+    "@middlewares": "dist/middlewares",
+    "@validators": "dist/middlewares/validators",
+    "@repositories": "dist/repositories",
+    "@models": "dist/models",
+    "@config": "dist/config",
+    "@errors": "dist/errors"
   }
 }
