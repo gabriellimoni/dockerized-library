@@ -1,6 +1,6 @@
-import { promisify } from 'util'
 import redis from 'redis'
-const client = redis.createClient({host: process.env.REDIS_HOST})
+import { host, password, port } from '@config/redis'
+const client = redis.createClient({ host, port, password })
 
 export const saveCache = (key: string, data: object, expirationInSeconds: number) => {
     client.set(
