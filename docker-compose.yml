@@ -19,6 +19,8 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_HOST: library-mysql
       REDIS_HOST: library-redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: null
       JWT_SECRET_KEY: 'MY-SUPER-SECRET'
       RABBITMQ_CONNECTION_STRING: 'amqp://library-rabbitmq'
       PORT: 3000
