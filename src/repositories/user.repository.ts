@@ -1,8 +1,8 @@
 import User from "@dto/iUser"
 import UserModel from '@models/mysql/user.model'
 import { ForeignKeyViolationError, UniqueViolationError } from "objection"
-import LibraryNameUniqueError from "src/errors/EntityFieldUnique"
-import EntityForeignError from "src/errors/EntityForeign"
+import LibraryNameUniqueError from "@errors/EntityFieldUnique"
+import EntityForeignError from "@errors/EntityForeign"
 
 export const insertUser = async (user: User): Promise<User | undefined> => {
     const inserted = await UserModel.transaction(async trx => {

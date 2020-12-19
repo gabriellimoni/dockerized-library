@@ -1,6 +1,6 @@
 import Library from "@dto/iLibrary"
 import { UniqueViolationError } from "objection"
-import EntityFieldUniqueError from "src/errors/EntityFieldUnique"
+import EntityFieldUniqueError from "@errors/EntityFieldUnique"
 import LibraryModel from '@models/mysql/library.model'
 import LibraryListParams from "@dto/iLibraryListParams"
 

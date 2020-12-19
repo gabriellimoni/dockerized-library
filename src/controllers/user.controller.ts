@@ -3,7 +3,7 @@ import userService from '@services/user.service'
 import { comparePassoword, generateToken } from '@services/auth.service'
 import User from "@dto/iUser"
 import LoginData from "@dto/iLoginData"
-import InvalidCredentialsError from "src/errors/InvalidCredentials"
+import InvalidCredentialsError from "@errors/InvalidCredentials"
 
 const createUser = async (req: Request, res: Response) => {
     const user: User = req.body

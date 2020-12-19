@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 import * as authService from '@services/auth.service'
-import BaseApiError from "src/errors/BaseApiError"
+import BaseApiError from "@errors/BaseApiError"
 import { v4 } from "uuid"
 
 export default async (req: Request, res: Response, next: NextFunction) => {

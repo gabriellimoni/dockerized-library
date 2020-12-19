@@ -2,7 +2,7 @@ import Book from '@dto/iBook'
 import BookListParams from '@dto/iBookListParams'
 import BookModel from '@models/mysql/book.model'
 import { ForeignKeyViolationError } from 'objection'
-import EntityForeignError from 'src/errors/EntityForeign'
+import EntityForeignError from '@errors/EntityForeign'
 
 export const insertBook = async (book: Book): Promise<Book | undefined> => {
     const inserted = await BookModel.transaction(async trx => {

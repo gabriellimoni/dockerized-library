@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import libraryService from '@services/library.service'
 import Library from '@dto/iLibrary'
-import EntityNotFoundError from 'src/errors/EntityNotFound'
-import BaseApiError from 'src/errors/BaseApiError'
+import EntityNotFoundError from '@errors/EntityNotFound'
+import BaseApiError from '@errors/BaseApiError'
 
 const createLibrary = async (req: Request, res: Response) => {
     const library: Library = req.body
