@@ -8,11 +8,9 @@ import errorInterceptor from '@middlewares/errorInterceptor.middleware'
 import './database/mysql'
 import * as amqpService from '@services/amqp.service'
 import * as newBookNotificatorService from '@services/newBookNotificator.service'
-import * as secretsService from '@services/secrets.service'
 import graphqlService from '@services/graphql.service'
 
 async function main () {
-    await secretsService.setSecrets()
     await amqpService.connect()
     await newBookNotificatorService.startListening()
     
