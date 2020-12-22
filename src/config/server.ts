@@ -1,1 +1,1 @@
-export const port: Number = Number(process.env.PORT) || 3000
+export const port: number = Number(process.env.PORT)
